@@ -1,4 +1,4 @@
-﻿        public Program() {
+﻿public Program() {
     // The constructor, called only once every session and
     // always before any other method is called. Use it to
     // initialize your script. 
@@ -29,7 +29,6 @@ public void Main(string argument) {
     const string nameLCD = "CC LCD ";
     const string nameSonor = "CD-Block Sonor ";
     const int nbLCD = 5;
-    const Color color = new Color(255, 0, 0, 255);
     const bool alarm = true;
 
     /**
@@ -37,6 +36,8 @@ public void Main(string argument) {
      */
     string time;
     string timeTest;
+    Color colorRed = new Color(255, 0, 0);
+    Color colorGreen = new Color(0, 201, 35);
 
     // List Panels LCDs
     List< IMyTextPanel> blocklist = new List< IMyTextPanel>();
@@ -64,7 +65,9 @@ public void Main(string argument) {
         display = GridTerminalSystem.GetBlockWithName( nameLCD + i ) as IMyTextPanel;
 
         if ( alarm == true && timeTest.CompareTo("020000") > 0 && timeTest.CompareTo("060000") < 0) {
-            //display.SetValueFloat("FontColor", color ); 
+            display.SetValue("FontColor", colorRed ); 
+        } else {
+            display.SetValue("FontColor", colorGreen ); 
         }
 
         // Write text in display
